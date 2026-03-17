@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- SEO: titles & descriptions swapped by JS, defaults to FR -->
+<title id="meta-title">GEO Local — Visible dans les IA, pas juste sur Google</title>
+<meta id="meta-desc" name="description" content="En 30 jours, votre restaurant est recommandé par ChatGPT, Perplexity et Google AI — pas juste indexé, cité."/>
+
+<!-- hreflang: indique aux moteurs de recherche les 2 versions linguistiques -->
+<link rel="alternate" hreflang="fr" href="./geo-local-landing.html?lang=fr"/>
+<link rel="alternate" hreflang="en" href="./geo-local-landing.html?lang=en"/>
+<link rel="alternate" hreflang="x-default" href="./geo-local-landing.html"/>
+<link id="canonical" rel="canonical" href="./geo-local-landing.html?lang=fr"/>
+
+<!-- Open Graph (updated by JS on lang switch) -->
+<meta id="og-title"    property="og:title"       content="GEO Local — Visible dans les IA"/>
+<meta id="og-desc"     property="og:description"  content="En 30 jours, votre restaurant est recommandé par ChatGPT, Perplexity et Google AI."/>
+<meta id="og-locale"   property="og:locale"       content="fr_FR"/>
+<meta property="og:type" content="website"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --bg:#080810;--surface:#0f0f1a;--surface2:#15152a;
+  --accent:#7c5cfc;--accent2:#00e5c3;--accent3:#ff6b6b;
+  --text:#eeeef5;--text-muted:#7878a0;
+  --border:rgba(124,92,252,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 5%;
+  background:rgba(8,8,16,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  gap:1rem;
+}
+.nav-logo{display:flex;align-items:center;flex-shrink:0}
+.nav-logo svg{height:30px;width:auto;display:block;overflow:visible}
+@media(max-width:600px){.nav-logo svg{height:24px}}
+.nav-right{display:flex;align-items:center;gap:.8rem}
+
+/* ── LANG SWITCHER ── */
+.lang-switcher{
+  display:flex;align-items:center;gap:4px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;padding:3px;
+}
+.lang-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:.3rem .6rem;border-radius:5px;
+  background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;
+  color:var(--text-muted);transition:all .2s;white-space:nowrap;
+}
+.lang-btn .flag{font-size:.9rem;line-height:1}
+.lang-btn:hover{color:var(--text)}
+.lang-btn.active{background:rgba(124,92,252,0.25);color:var(--text);border:1px solid rgba(124,92,252,0.4)}
+
+.nav-cta{
+  padding:.5rem 1.3rem;background:var(--accent);color:#fff;
+  border:none;border-radius:6px;font-family:'DM Sans',sans-serif;
+  font-size:.85rem;font-weight:500;cursor:pointer;text-decoration:none;
+  transition:opacity .2s;white-space:nowrap;
+}
+.nav-cta:hover{opacity:.85}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:120px 5% 80px;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 60% 30%,rgba(124,92,252,.13) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 40% at 20% 80%,rgba(0,229,195,.07) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(124,92,252,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(124,92,252,.05) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+  mask-image:radial-gradient(ellipse at center,black 20%,transparent 80%);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.35rem 1rem;background:rgba(124,92,252,.12);
+  border:1px solid rgba(124,92,252,.3);border-radius:100px;
+  font-size:.78rem;font-weight:500;color:var(--accent2);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:2rem;width:fit-content;
+}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.8rem,6vw,5.2rem);line-height:1.0;
+  letter-spacing:-0.03em;max-width:820px;margin-bottom:1.6rem;
+}
+.hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent)}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.2rem);color:var(--text-muted);max-width:540px;font-weight:300;margin-bottom:3rem;line-height:1.7}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-main{
+  padding:1rem 2.2rem;background:var(--accent);color:#fff;border:none;border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;box-shadow:0 0 40px rgba(124,92,252,.35);
+}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(124,92,252,.5)}
+.btn-ghost{
+  padding:1rem 2rem;background:transparent;color:var(--text-muted);
+  border:1px solid rgba(255,255,255,.1);border-radius:8px;
+  font-family:'DM Sans',sans-serif;font-size:1rem;cursor:pointer;text-decoration:none;
+  transition:border-color .2s,color .2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.3);color:var(--text)}
+.hero-proof{
+  display:flex;align-items:center;gap:1.5rem;margin-top:4rem;
+  padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap;
+}
+.proof-item{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--text-muted)}
+.proof-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2)}
+
+/* ── SECTIONS ── */
+.section-label{font-size:.75rem;font-weight:600;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem}
+.section-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,3rem);letter-spacing:-0.02em;line-height:1.15;margin-bottom:1.5rem;max-width:700px;
+}
+.section-title em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent)}
+
+/* ── PROBLEM ── */
+.problem{padding:100px 5%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem}
+.problem-card{padding:1.8rem;background:var(--surface2);border:1px solid rgba(255,107,107,.15);border-radius:12px}
+.problem-card .icon{font-size:1.5rem;margin-bottom:1rem}
+.problem-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.6rem;color:var(--text)}
+.problem-card p{font-size:.9rem;color:var(--text-muted);line-height:1.6}
+
+/* ── SOLUTION ── */
+.solution{padding:100px 5%}
+.solution-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem}
+@media(max-width:768px){.solution-layout{grid-template-columns:1fr}}
+.solution-visual{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;
+}
+.solution-visual::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.flow-step{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.flow-step:last-child{border-bottom:none}
+.flow-num{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--accent);border-radius:6px;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;color:#fff}
+.flow-step h4{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:.25rem}
+.flow-step p{font-size:.82rem;color:var(--text-muted)}
+.solution-list{list-style:none}
+.solution-list li{display:flex;align-items:flex-start;gap:.8rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.95rem;color:var(--text-muted);line-height:1.5}
+.solution-list li::before{content:'→';color:var(--accent2);font-weight:600;flex-shrink:0;margin-top:.05rem}
+
+/* ── DELIVERABLES ── */
+.deliverables{padding:100px 5%;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.deliverables-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:3rem}
+.deliverable-card{
+  padding:1.6rem;background:var(--bg);border:1px solid var(--border);border-radius:12px;
+  transition:border-color .3s,transform .3s;position:relative;overflow:hidden;
+}
+.deliverable-card:hover{border-color:rgba(124,92,252,.5);transform:translateY(-3px)}
+.deliverable-card::after{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 0%,rgba(124,92,252,.08),transparent 70%);transition:opacity .3s}
+.deliverable-card:hover::after{opacity:1}
+.d-tag{font-size:.72rem;font-weight:600;color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.8rem}
+.deliverable-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.deliverable-card p{font-size:.85rem;color:var(--text-muted)}
+
+/* ── PRICING ── */
+.pricing{padding:100px 5%;text-align:center}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:900px;margin:3rem auto 0}
+.pricing-card{padding:2.5rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;text-align:left;position:relative;transition:transform .3s}
+.pricing-card:hover{transform:translateY(-4px)}
+.pricing-card.featured{border-color:var(--accent);background:linear-gradient(135deg,var(--surface) 0%,rgba(124,92,252,.08) 100%)}
+.pricing-card.featured::before{content:attr(data-badge);position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:600;padding:.25rem 1rem;border-radius:100px;white-space:nowrap;letter-spacing:.05em}
+.price-label{font-size:.78rem;font-weight:600;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.price-amount{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);margin-bottom:.3rem}
+.price-amount span{font-size:1.1rem;font-weight:400;color:var(--text-muted)}
+.price-desc{font-size:.85rem;color:var(--text-muted);margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.price-features{list-style:none}
+.price-features li{display:flex;align-items:flex-start;gap:.6rem;font-size:.88rem;color:var(--text-muted);padding:.5rem 0}
+.price-features li::before{content:'✓';color:var(--accent2);font-weight:700;flex-shrink:0}
+.price-note{font-size:.78rem;color:var(--accent);margin-top:1.2rem;font-style:italic}
+
+/* ── GARANTIE ── */
+.garantie{padding:80px 5%;background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.garantie-inner{max-width:700px;margin:0 auto;text-align:center}
+.garantie-badge{width:72px;height:72px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 2rem}
+.garantie-inner h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-0.02em;margin-bottom:1rem}
+.garantie-inner p{color:var(--text-muted);font-size:1rem;line-height:1.7}
+
+/* ── FAQ ── */
+.faq{padding:100px 5%}
+.faq-inner{max-width:680px;margin:3rem auto 0}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 0;font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--text);cursor:pointer;text-align:left;gap:1rem}
+.faq-q .arrow{color:var(--accent);font-size:1.2rem;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q .arrow{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a p{padding:.2rem 0 1.4rem;font-size:.9rem;color:var(--text-muted);line-height:1.7}
+
+/* ── CTA FINAL ── */
+.cta-final{padding:120px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(124,92,252,.1) 0%,transparent 70%);pointer-events:none}
+.cta-final h2{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:1.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+.cta-final h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--accent)}
+.cta-final p{font-size:1.05rem;color:var(--text-muted);max-width:480px;margin:0 auto 2.5rem}
+.cta-urgence{display:inline-block;background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.3);color:#ff8e8e;font-size:.8rem;font-weight:600;padding:.4rem 1.2rem;border-radius:100px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem 5%;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{display:flex;align-items:center}
+.footer-logo svg{height:20px;width:auto;display:block;opacity:.6}
+footer p{font-size:.8rem;color:var(--text-muted)}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(8,8,16,0.85);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;width:100%;max-width:520px;
+  padding:2.5rem;position:relative;
+  overflow-y:auto;max-height:92vh;
+  box-sizing:border-box;
+  transform:translateY(20px);transition:transform .3s ease;
+}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.modal-close{
+  position:absolute;top:1.2rem;right:1.2rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--text-muted);font-size:1.1rem;
+  transition:background .2s,color .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.modal-title{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:.4rem}
+.modal-sub{font-size:.88rem;color:var(--text-muted);margin-bottom:2rem;line-height:1.5}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;min-width:0}
+.form-row .form-group{min-width:0}
+@media(max-width:520px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.78rem;font-weight:600;color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
+.form-group input{
+  background:var(--surface2);border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:.75rem 1rem;
+  font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--text);
+  outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.form-group input::placeholder{color:var(--text-muted);opacity:.6}
+.form-group input:focus{border-color:rgba(124,92,252,.5);box-shadow:0 0 0 3px rgba(124,92,252,.1)}
+.form-submit{
+  width:100%;padding:1rem;background:var(--accent);color:#fff;
+  border:none;border-radius:8px;font-family:'DM Sans',sans-serif;
+  font-size:1rem;font-weight:500;cursor:pointer;margin-top:.5rem;
+  transition:opacity .2s,transform .2s;box-shadow:0 0 30px rgba(124,92,252,.3);
+}
+.form-submit:hover{opacity:.88;transform:translateY(-1px)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.form-success{
+  text-align:center;padding:2rem 1rem;display:none;flex-direction:column;align-items:center;gap:1rem;
+}
+.form-success .check{width:56px;height:56px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.form-success h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700}
+.form-success p{font-size:.88rem;color:var(--text-muted);max-width:320px;line-height:1.6}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+
+/* ── LANG FADE ── */
+.lang-fade{animation:langFade .3s ease}
+@keyframes langFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:600px){nav .nav-cta{display:none}.hero-proof{flex-direction:column;align-items:flex-start;gap:1rem}.lang-btn .lang-code{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══ MODAL AUDIT ═══ -->
+<div class="modal-overlay" id="audit-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fermer">✕</button>
+
+    <!-- Formulaire -->
+    <div id="modal-form-content">
+      <div class="modal-title" id="modal-title" data-i18n="modal_title">Obtenez votre audit gratuit</div>
+      <p class="modal-sub" data-i18n="modal_sub">20 minutes, sans engagement. Je vous dis exactement ce qui bloque votre visibilité IA.</p>
+
+      <form id="audit-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="526b3486-2545-4664-9338-9404588d74a7"/>
+        <input type="hidden" name="subject" value="🍽️ Nouvelle demande d'audit Mentio"/>
+        <input type="hidden" name="redirect" value="false"/>
+        <input type="checkbox" name="botcheck" style="display:none"/>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-nom" data-i18n="form_nom_label">Nom</label>
+            <input type="text" id="f-nom" name="nom" placeholder="Dupont" required data-i18n-placeholder="form_nom_ph"/>
+          </div>
+          <div class="form-group">
+            <label for="f-prenom" data-i18n="form_prenom_label">Prénom</label>
+            <input type="text" id="f-prenom" name="prenom" placeholder="Marie" required data-i18n-placeholder="form_prenom_ph"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="f-fonction" data-i18n="form_fonction_label">Votre fonction</label>
+          <input type="text" id="f-fonction" name="fonction" placeholder="Gérant, Directeur, Chef..." required data-i18n-placeholder="form_fonction_ph"/>
+        </div>
+
+        <div class="form-group">
+          <label for="f-resto" data-i18n="form_resto_label">Nom du restaurant</label>
+          <input type="text" id="f-resto" name="restaurant" placeholder="Le Comptoir du Marché" required data-i18n-placeholder="form_resto_ph"/>
+        </div>
+
+        <div class="form-group">
+          <label for="f-ville" data-i18n="form_ville_label">Ville</label>
+          <input type="text" id="f-ville" name="ville" placeholder="Paris, Lyon, New York..." required data-i18n-placeholder="form_ville_ph"/>
+        </div>
+
+        <div class="form-group">
+          <label for="f-url" data-i18n="form_url_label">URL du site web</label>
+          <input type="url" id="f-url" name="site_web" placeholder="https://monrestaurant.fr" required data-i18n-placeholder="form_url_ph"/>
+        </div>
+
+        <button type="submit" class="form-submit" id="submit-btn" data-i18n="form_submit">Envoyer ma demande →</button>
+      </form>
+    </div>
+
+    <!-- Succès -->
+    <div class="form-success" id="form-success">
+      <div class="check">✓</div>
+      <h3 data-i18n="success_title">Demande envoyée !</h3>
+      <p data-i18n="success_body">Je vous recontacte sous 24h pour planifier votre audit. À très vite !</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 320 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mentio" overflow="visible">
+      <text x="0" y="40" font-family="'Syne', sans-serif" font-weight="800" font-size="46" letter-spacing="2" fill="#eeeef5">MENTIO</text>
+    </svg>
+  </div>
+  <div class="nav-right">
+
+    <!-- Sélecteur de langue avec drapeaux -->
+    <div class="lang-switcher" role="navigation" aria-label="Language selector">
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')" aria-label="Français" lang="fr">
+        <span class="flag">🇫🇷</span>
+        <span class="lang-code">FR</span>
+      </button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English" lang="en">
+        <span class="flag">🇺🇸</span>
+        <span class="lang-code">EN</span>
+      </button>
+    </div>
+
+    <a href="#" class="nav-cta" onclick="openModal();return false;" data-i18n="nav_cta">Audit gratuit →</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag" data-i18n="hero_tag">Nouveau · Generative Engine Optimization</div>
+  <h1 data-i18n-html="hero_h1">Votre restaurant,<br/><em>recommandé</em> par les IA.</h1>
+  <p class="hero-sub" data-i18n="hero_sub">ChatGPT, Perplexity et Google AI répondent à des millions de recherches locales chaque jour. La plupart des restaurants n'y apparaissent pas. En 30 jours, vous êtes cité — pas juste indexé.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-main" onclick="openModal();return false;" data-i18n="hero_cta1">Obtenir un audit gratuit</a>
+    <a href="#methode" class="btn-ghost" data-i18n="hero_cta2">Voir la méthode ↓</a>
+  </div>
+  <div class="hero-proof">
+    <div class="proof-item"><span class="proof-dot"></span><span data-i18n="proof1">Paris &amp; New York</span></div>
+    <div class="proof-item"><span class="proof-dot"></span><span data-i18n="proof2">Résultats en 30 jours</span></div>
+    <div class="proof-item"><span class="proof-dot"></span><span data-i18n="proof3">Technique + contenu inclus</span></div>
+    <div class="proof-item"><span class="proof-dot"></span><span data-i18n="proof4">Garantie satisfaction</span></div>
+  </div>
+</section>
+
+<!-- ═══ PROBLÈME ═══ -->
+<section class="problem">
+  <div class="reveal">
+    <div class="section-label" data-i18n="prob_label">Le problème</div>
+    <h2 class="section-title" data-i18n-html="prob_title">Google seul ne suffit <em>plus</em>.</h2>
+    <p style="color:var(--text-muted);max-width:580px;font-size:1rem" data-i18n="prob_intro">Les moteurs de recherche IA captent une part croissante des recherches locales. Une part croissante de vos futurs clients demandent directement à une IA "où manger ce soir" — et obtiennent une liste de recommandations. Si vous n'y êtes pas, vous n'existez pas.</p>
+  </div>
+  <div class="problem-grid">
+    <div class="reveal reveal-delay-1 problem-card">
+      <div class="icon">🔍</div>
+      <h3 data-i18n="prob1_title">Invisible dans les IA</h3>
+      <p data-i18n="prob1_body">ChatGPT, Perplexity, Google AI Overview — vos concurrents commencent à apparaître. Pas vous.</p>
+    </div>
+    <div class="reveal reveal-delay-2 problem-card">
+      <div class="icon">📉</div>
+      <h3 data-i18n="prob2_title">Trafic organique en stagnation</h3>
+      <p data-i18n="prob2_body">Le SEO classique perd en impact depuis 18 mois. Les clics se font capturer en amont par les IA.</p>
+    </div>
+    <div class="reveal reveal-delay-3 problem-card">
+      <div class="icon">⏳</div>
+      <h3 data-i18n="prob3_title">La fenêtre se ferme</h3>
+      <p data-i18n="prob3_body">Les positions IA locales vont se cristalliser. Les premiers bien positionnés garderont l'avantage longtemps.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ═══ -->
+<section class="solution" id="methode">
+  <div class="reveal">
+    <div class="section-label" data-i18n="sol_label">La solution</div>
+    <h2 class="section-title" data-i18n-html="sol_title">Le GEO Local :<br/><em>être cité</em>, pas juste référencé.</h2>
+  </div>
+  <div class="solution-layout">
+    <div class="reveal">
+      <p style="color:var(--text-muted);margin-bottom:2rem;line-height:1.7" data-i18n="sol_intro">Le GEO (Generative Engine Optimization) est l'optimisation de votre présence pour les moteurs IA. Contrairement au SEO classique, il s'agit de structurer votre information pour qu'une IA puisse la comprendre, l'utiliser et vous recommander.</p>
+      <ul class="solution-list">
+        <li data-i18n="sol_li1">Votre établissement apparaît dans les réponses ChatGPT sur les recherches locales</li>
+        <li data-i18n="sol_li2">Google AI Overview vous cite en premier résultat conversationnel</li>
+        <li data-i18n="sol_li3">Perplexity vous recommande quand quelqu'un cherche le meilleur de votre spécialité</li>
+        <li data-i18n="sol_li4">Votre fiche GMB est optimisée pour les extraits IA, pas juste le map pack</li>
+        <li data-i18n="sol_li5">Vos pages sont structurées pour être réutilisées comme source par les LLM</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-1 solution-visual">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div><h4 data-i18n="flow1_title">Audit GEO complet</h4><p data-i18n="flow1_body">Ce qui bloque votre visibilité IA aujourd'hui — gaps techniques et contenu</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div><h4 data-i18n="flow2_title">Déploiement technique</h4><p data-i18n="flow2_body">llms.txt, ai-plugin.json, Schema.org Restaurant, données structurées</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div><h4 data-i18n="flow3_title">Optimisation contenu</h4><p data-i18n="flow3_body">Reformatage de 3–5 pages pour être citables par les modèles IA</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div><h4 data-i18n="flow4_title">Rapport de visibilité J+30</h4><p data-i18n="flow4_body">Captures des mentions IA trouvées, requêtes cibles, recommandations</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVRABLES ═══ -->
+<section class="deliverables">
+  <div class="reveal">
+    <div class="section-label" data-i18n="del_label">Ce que vous recevez</div>
+    <h2 class="section-title" data-i18n-html="del_title">Livrables <em>concrets</em>.</h2>
+    <p style="color:var(--text-muted);max-width:520px;margin-top:.8rem" data-i18n="del_intro">Pas un audit PowerPoint. Des fichiers déployés, des pages optimisées, des résultats mesurables.</p>
+  </div>
+  <div class="deliverables-grid">
+    <div class="reveal deliverable-card"><div class="d-tag" data-i18n="dtag_tech">Technique</div><h3>llms.txt</h3><p data-i18n="del1_body">Déployé sur votre domaine — dit aux IA ce que vous êtes, ce que vous proposez, comment vous contacter.</p></div>
+    <div class="reveal reveal-delay-1 deliverable-card"><div class="d-tag" data-i18n="dtag_tech">Technique</div><h3>ai-plugin.json</h3><p data-i18n="del2_body">Connecteur pour les agents IA — permet l'intégration avec les assistants de recherche avancés.</p></div>
+    <div class="reveal reveal-delay-2 deliverable-card"><div class="d-tag" data-i18n="dtag_data">Données structurées</div><h3>Schema.org</h3><p data-i18n="del3_body">Restaurant, Menu, LocalBusiness, OpeningHours — le vocabulaire que les IA utilisent pour vous comprendre.</p></div>
+    <div class="reveal deliverable-card"><div class="d-tag">GMB</div><h3 data-i18n="del4_title">Google Business optimisé</h3><p data-i18n="del4_body">Fiche reoptimisée pour les extraits IA, pas seulement le map pack Google classique.</p></div>
+    <div class="reveal reveal-delay-1 deliverable-card"><div class="d-tag" data-i18n="dtag_content">Contenu</div><h3 data-i18n="del5_title">3–5 pages reformatées</h3><p data-i18n="del5_body">Pages de votre site réécrites pour être citées comme source par ChatGPT, Perplexity et Gemini.</p></div>
+    <div class="reveal reveal-delay-2 deliverable-card"><div class="d-tag" data-i18n="dtag_report">Reporting</div><h3 data-i18n="del6_title">Rapport visibilité J+30</h3><p data-i18n="del6_body">Captures des mentions IA trouvées sur vos requêtes cibles, avec analyse et recommandations.</p></div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing" id="pricing">
+  <div class="reveal">
+    <div class="section-label" data-i18n="price_label">Tarifs</div>
+    <h2 class="section-title" style="text-align:center;margin:0 auto 1rem" data-i18n-html="price_title">Investissement <em>clair</em>.</h2>
+    <p style="color:var(--text-muted);max-width:480px;margin:0 auto" data-i18n="price_intro">Un restaurant qui capte 2 nouveaux couverts par semaine via les IA récupère 400–800 €/mois. L'offre s'autofinance en 30 jours.</p>
+  </div>
+  <!-- Indicateur de taux de change en temps réel -->
+  <div id="rate-badge" style="display:none;justify-content:center;margin-top:1.2rem">
+    <span style="display:inline-flex;align-items:center;gap:.5rem;padding:.3rem .9rem;background:rgba(0,229,195,0.08);border:1px solid rgba(0,229,195,0.25);border-radius:100px;font-size:.75rem;color:var(--accent2)">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--accent2);display:inline-block"></span>
+      <span id="rate-text">Live rate: 1 EUR = 1.15 USD</span>
+      <span style="opacity:.5" id="rate-source">· open.er-api.com</span>
+    </span>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="reveal pricing-card">
+      <div class="price-label" data-i18n="plan1_label">Lancement</div>
+      <div class="price-amount" id="price-1" data-eur="490" data-eur-suffix="">490 € <span data-i18n="plan_oneshot">one-shot</span></div>
+      <div class="price-desc" data-i18n="plan1_desc">Audit + déploiement complet — pour les 3 premiers clients.</div>
+      <ul class="price-features">
+        <li data-i18n="p1f1">Audit GEO complet</li>
+        <li data-i18n="p1f2">llms.txt + ai-plugin.json déployés</li>
+        <li data-i18n="p1f3">Schema.org structuré</li>
+        <li data-i18n="p1f4">GMB reoptimisé</li>
+        <li data-i18n="p1f5">Rapport J+30</li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-1 pricing-card featured" data-badge="Recommandé" id="featured-card">
+      <div class="price-label" data-i18n="plan2_label">Croissance</div>
+      <div class="price-amount" id="price-2" data-eur="890" data-eur-secondary="290" data-eur-suffix="">890 € <span data-i18n="plan2_monthly">+ 290 €/mois</span></div>
+      <div class="price-desc" data-i18n="plan2_desc">One-shot + maintenance GEO mensuelle et reporting.</div>
+      <ul class="price-features">
+        <li data-i18n="p2f1">Tout le pack Lancement</li>
+        <li data-i18n="p2f2">3–5 pages reformatées pour IA</li>
+        <li data-i18n="p2f3">Veille visibilité mensuelle</li>
+        <li data-i18n="p2f4">Ajustements contenu</li>
+        <li data-i18n="p2f5">Rapport mensuel détaillé</li>
+      </ul>
+      <div class="price-note" data-i18n="plan2_roi">ROI estimé : x3 à x5 en 3 mois</div>
+    </div>
+    <div class="reveal reveal-delay-2 pricing-card">
+      <div class="price-label" data-i18n="plan3_label">Agence / Multi-sites</div>
+      <div class="price-amount" id="price-3" data-eur="1500" data-eur-suffix="/mo">1 500 € <span data-i18n="plan3_monthly">/mois</span></div>
+      <div class="price-desc" data-i18n="plan3_desc">3 établissements inclus — pour agences ou groupes.</div>
+      <ul class="price-features">
+        <li data-i18n="p3f1">3 établissements couverts</li>
+        <li data-i18n="p3f2">Déploiement complet sur chaque site</li>
+        <li data-i18n="p3f3">Dashboard de suivi partagé</li>
+        <li data-i18n="p3f4">Réponses illimitées</li>
+        <li data-i18n="p3f5">Accès prioritaire</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GARANTIE ═══ -->
+<section class="garantie">
+  <div class="garantie-inner reveal">
+    <div class="garantie-badge">🛡</div>
+    <div class="section-label" style="text-align:center" data-i18n="gar_label">Garantie</div>
+    <h2 data-i18n-html="gar_title">Résultats mesurables<br/>ou on refait.</h2>
+    <p style="margin-top:1rem" data-i18n="gar_body">Si après 30 jours votre établissement n'apparaît dans aucune réponse IA sur vos requêtes cibles, je refais une passe complète gratuitement. Vous ne prenez aucun risque.</p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq">
+  <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+    <div class="section-label" data-i18n="faq_label">FAQ</div>
+    <h2 class="section-title" style="margin:0 auto" data-i18n="faq_title">Questions fréquentes.</h2>
+  </div>
+  <div class="faq-inner" id="faq-container">
+    <!-- injected by JS -->
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta-final" id="contact">
+  <div class="cta-urgence" data-i18n="cta_urgence">⚡ Places limitées — 3 clients par mois</div>
+  <h2 data-i18n-html="cta_title">Prêt à être <em>recommandé</em><br/>par les IA ?</h2>
+  <p data-i18n="cta_body">Audit de votre situation actuelle offert — 20 minutes, sans engagement. Je vous dis exactement où vous en êtes et ce qui bloque votre visibilité IA.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="#" class="btn-main" onclick="openModal();return false;" style="font-size:1.1rem;padding:1.1rem 2.5rem" data-i18n="cta_btn">Demander mon audit gratuit →</a>
+  </div>
+  <p style="margin-top:1.5rem;font-size:.82rem;color:var(--text-muted)" data-i18n="cta_note">Réponse sous 24h · Pas de relance commerciale agressive</p>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">
+    <svg viewBox="0 0 320 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Mentio" overflow="visible">
+      <text x="0" y="40" font-family="'Syne', sans-serif" font-weight="800" font-size="46" letter-spacing="2" fill="#eeeef5">MENTIO</text>
+    </svg>
+  </div>
+  <p data-i18n="footer_tagline">Generative Engine Optimization pour restaurants &amp; commerces locaux</p>
+  <p style="font-size:.78rem;color:#444466">© 2026</p>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// i18n DICTIONNAIRE
+// ══════════════════════════════════════════════════════════
+const i18n = {
+  fr: {
+    // Meta SEO
+    _title: "GEO Local — Visible dans les IA, pas juste sur Google",
+    _desc:  "En 30 jours, votre restaurant est recommandé par ChatGPT, Perplexity et Google AI — pas juste indexé, cité.",
+    _og_locale: "fr_FR",
+    // Nav
+    nav_cta: "Audit gratuit →",
+    // Hero
+    hero_tag:  "Nouveau · Generative Engine Optimization",
+    hero_h1:   "Votre restaurant,<br/><em>recommandé</em> par les IA.",
+    hero_sub:  "ChatGPT, Perplexity et Google AI répondent à des millions de recherches locales chaque jour. La plupart des restaurants n'y apparaissent pas. En 30 jours, vous êtes cité — pas juste indexé.",
+    hero_cta1: "Obtenir un audit gratuit",
+    hero_cta2: "Voir la méthode ↓",
+    proof1: "Paris & New York", proof2: "Résultats en 30 jours", proof3: "Technique + contenu inclus", proof4: "Garantie satisfaction",
+    // Problème
+    prob_label: "Le problème",
+    prob_title: "Google seul ne suffit <em>plus</em>.",
+    prob_intro: "Les moteurs de recherche IA captent une part croissante des recherches locales. Une part croissante de vos futurs clients demandent directement à une IA \"où manger ce soir\" — et obtiennent une liste de recommandations. Si vous n'y êtes pas, vous n'existez pas.",
+    prob1_title: "Invisible dans les IA", prob1_body: "ChatGPT, Perplexity, Google AI Overview — vos concurrents commencent à apparaître. Pas vous.",
+    prob2_title: "Trafic organique en stagnation", prob2_body: "Le SEO classique perd en impact depuis 18 mois. Les clics se font capturer en amont par les IA.",
+    prob3_title: "La fenêtre se ferme", prob3_body: "Les positions IA locales vont se cristalliser. Les premiers bien positionnés garderont l'avantage longtemps.",
+    // Solution
+    sol_label: "La solution",
+    sol_title: "Le GEO Local :<br/><em>être cité</em>, pas juste référencé.",
+    sol_intro: "Le GEO (Generative Engine Optimization) est l'optimisation de votre présence pour les moteurs IA. Contrairement au SEO classique, il s'agit de structurer votre information pour qu'une IA puisse la comprendre, l'utiliser et vous recommander.",
+    sol_li1: "Votre établissement apparaît dans les réponses ChatGPT sur les recherches locales",
+    sol_li2: "Google AI Overview vous cite en premier résultat conversationnel",
+    sol_li3: "Perplexity vous recommande quand quelqu'un cherche le meilleur de votre spécialité",
+    sol_li4: "Votre fiche GMB est optimisée pour les extraits IA, pas juste le map pack",
+    sol_li5: "Vos pages sont structurées pour être réutilisées comme source par les LLM",
+    flow1_title: "Audit GEO complet", flow1_body: "Ce qui bloque votre visibilité IA aujourd'hui — gaps techniques et contenu",
+    flow2_title: "Déploiement technique", flow2_body: "llms.txt, ai-plugin.json, Schema.org Restaurant, données structurées",
+    flow3_title: "Optimisation contenu", flow3_body: "Reformatage de 3–5 pages pour être citables par les modèles IA",
+    flow4_title: "Rapport de visibilité J+30", flow4_body: "Captures des mentions IA trouvées, requêtes cibles, recommandations",
+    // Livrables
+    del_label: "Ce que vous recevez", del_title: "Livrables <em>concrets</em>.",
+    del_intro: "Pas un audit PowerPoint. Des fichiers déployés, des pages optimisées, des résultats mesurables.",
+    dtag_tech: "Technique", dtag_data: "Données structurées", dtag_content: "Contenu", dtag_report: "Reporting",
+    del1_body: "Déployé sur votre domaine — dit aux IA ce que vous êtes, ce que vous proposez, comment vous contacter.",
+    del2_body: "Connecteur pour les agents IA — permet l'intégration avec les assistants de recherche avancés.",
+    del3_body: "Restaurant, Menu, LocalBusiness, OpeningHours — le vocabulaire que les IA utilisent pour vous comprendre.",
+    del4_title: "Google Business optimisé", del4_body: "Fiche reoptimisée pour les extraits IA, pas seulement le map pack Google classique.",
+    del5_title: "3–5 pages reformatées", del5_body: "Pages de votre site réécrites pour être citées comme source par ChatGPT, Perplexity et Gemini.",
+    del6_title: "Rapport visibilité J+30", del6_body: "Captures des mentions IA trouvées sur vos requêtes cibles, avec analyse et recommandations.",
+    // Pricing
+    price_label: "Tarifs", price_title: "Investissement <em>clair</em>.",
+    price_intro: "Un restaurant qui capte 2 nouveaux couverts par semaine via les IA récupère 400–800 €/mois. L'offre s'autofinance en 30 jours.",
+    plan_oneshot: "one-shot", plan2_monthly: "+ 290 €/mois", plan3_monthly: "/mois",
+    plan1_label: "Lancement", plan1_desc: "Audit + déploiement complet — pour les 3 premiers clients.",
+    plan2_label: "Croissance", plan2_desc: "One-shot + maintenance GEO mensuelle et reporting.", plan2_roi: "ROI estimé : x3 à x5 en 3 mois",
+    plan3_label: "Agence / Multi-sites", plan3_desc: "3 établissements inclus — pour agences ou groupes.",
+    featured_badge: "Recommandé",
+    p1f1:"Audit GEO complet",p1f2:"llms.txt + ai-plugin.json déployés",p1f3:"Schema.org structuré",p1f4:"GMB reoptimisé",p1f5:"Rapport J+30",
+    p2f1:"Tout le pack Lancement",p2f2:"3–5 pages reformatées pour IA",p2f3:"Veille visibilité mensuelle",p2f4:"Ajustements contenu",p2f5:"Rapport mensuel détaillé",
+    p3f1:"3 établissements couverts",p3f2:"Déploiement complet sur chaque site",p3f3:"Dashboard de suivi partagé",p3f4:"Réponses illimitées",p3f5:"Accès prioritaire",
+    // Garantie
+    gar_label: "Garantie", gar_title: "Résultats mesurables<br/>ou on refait.",
+    gar_body: "Si après 30 jours votre établissement n'apparaît dans aucune réponse IA sur vos requêtes cibles, je refais une passe complète gratuitement. Vous ne prenez aucun risque.",
+    // FAQ
+    faq_label: "FAQ", faq_title: "Questions fréquentes.",
+    faq: [
+      {q:"C'est quoi le GEO exactement ?", a:"Le Generative Engine Optimization est l'optimisation de votre présence pour les moteurs IA comme ChatGPT, Perplexity ou Google AI Overview. Là où le SEO optimise pour des liens cliquables, le GEO optimise pour être cité comme source dans une réponse conversationnelle."},
+      {q:"Est-ce que ça remplace le SEO classique ?", a:"Non, ça le complète. La plupart des optimisations GEO améliorent aussi votre SEO classique (données structurées, qualité du contenu, autorité de domaine). C'est une couche supplémentaire, pas un remplacement."},
+      {q:"J'ai besoin d'un développeur pour déployer les fichiers ?", a:"Non. Je gère le déploiement complet — que votre site soit sur WordPress, Webflow, Squarespace ou HTML statique. Vous n'avez rien à faire côté technique."},
+      {q:"En combien de temps je vois des résultats ?", a:"Les fichiers techniques sont déployés sous 15 jours. Les premières citations IA apparaissent généralement entre J+15 et J+45 selon le domaine et la concurrence locale. Le rapport J+30 mesure les premières occurrences."},
+      {q:"Ça marche pour quel type d'établissement ?", a:"Restaurants, brasseries, bars, hôtels-restaurants, traiteurs, dark kitchens — tout établissement qui a une présence locale et cherche à capter des clients via les nouvelles recherches IA. J'ai travaillé sur des clients à Paris, Lyon et New York."},
+    ],
+    // CTA
+    cta_urgence: "⚡ Places limitées — 3 clients par mois",
+    cta_title: "Prêt à être <em>recommandé</em><br/>par les IA ?",
+    cta_body: "Audit de votre situation actuelle offert — 20 minutes, sans engagement. Je vous dis exactement où vous en êtes et ce qui bloque votre visibilité IA.",
+    cta_btn: "Demander mon audit gratuit →",
+    cta_note: "Réponse sous 24h · Pas de relance commerciale agressive",
+    footer_tagline: "Generative Engine Optimization pour restaurants & commerces locaux",
+    // Modal
+    modal_title: "Obtenez votre audit gratuit",
+    modal_sub: "20 minutes, sans engagement. Je vous dis exactement ce qui bloque votre visibilité IA.",
+    form_nom_label: "Nom", form_nom_ph: "Dupont",
+    form_prenom_label: "Prénom", form_prenom_ph: "Marie",
+    form_fonction_label: "Votre fonction", form_fonction_ph: "Gérant, Directeur, Chef...",
+    form_resto_label: "Nom du restaurant", form_resto_ph: "Le Comptoir du Marché",
+    form_ville_label: "Ville", form_ville_ph: "Paris, Lyon, New York...",
+    form_url_label: "URL du site web", form_url_ph: "https://monrestaurant.fr",
+    form_submit: "Envoyer ma demande →",
+    form_subject: "Nouvelle demande d'audit GEO Local",
+    success_title: "Demande envoyée !",
+    success_body: "Je vous recontacte sous 24h pour planifier votre audit. À très vite !",
+  },
+
+  en: {
+    _title: "GEO Local — Recommended by AI, not just ranked on Google",
+    _desc:  "In 30 days, your restaurant gets cited by ChatGPT, Perplexity and Google AI — not just indexed, actually recommended.",
+    _og_locale: "en_US",
+    nav_cta: "Free audit →",
+    hero_tag:  "New · Generative Engine Optimization",
+    hero_h1:   "Your restaurant,<br/><em>recommended</em> by AI.",
+    hero_sub:  "ChatGPT, Perplexity and Google AI answer millions of local searches every day. Most restaurants don't appear. In 30 days, you get cited — not just indexed.",
+    hero_cta1: "Get a free audit",
+    hero_cta2: "See the method ↓",
+    proof1: "Paris & New York", proof2: "Results in 30 days", proof3: "Technical + content included", proof4: "Satisfaction guarantee",
+    prob_label: "The problem",
+    prob_title: "Google alone is no longer <em>enough</em>.",
+    prob_intro: "AI search engines are capturing a growing share of local searches. More and more potential customers ask an AI \"where to eat tonight\" — and get a curated list of recommendations. If you're not in it, you don't exist.",
+    prob1_title: "Invisible to AI", prob1_body: "ChatGPT, Perplexity, Google AI Overview — your competitors are starting to appear. Not you.",
+    prob2_title: "Stagnating organic traffic", prob2_body: "Classic SEO has been losing impact for 18 months. Clicks are being captured upstream by AI.",
+    prob3_title: "The window is closing", prob3_body: "Local AI positions will solidify soon. The first movers will hold the advantage for a long time.",
+    sol_label: "The solution",
+    sol_title: "GEO Local:<br/><em>get cited</em>, not just referenced.",
+    sol_intro: "GEO (Generative Engine Optimization) is the optimization of your presence for AI search engines. Unlike classic SEO, it's about structuring your information so an AI can understand, use, and recommend you.",
+    sol_li1: "Your venue appears in ChatGPT answers for local searches",
+    sol_li2: "Google AI Overview cites you as a top conversational result",
+    sol_li3: "Perplexity recommends you when someone searches for the best in your category",
+    sol_li4: "Your Google Business Profile is optimized for AI snippets, not just the map pack",
+    sol_li5: "Your pages are structured to be reused as a source by LLMs",
+    flow1_title: "Full GEO audit", flow1_body: "What's blocking your AI visibility today — technical gaps and content",
+    flow2_title: "Technical deployment", flow2_body: "llms.txt, ai-plugin.json, Schema.org Restaurant, structured data",
+    flow3_title: "Content optimization", flow3_body: "Reformatting 3–5 pages to be citable by AI models",
+    flow4_title: "Visibility report D+30", flow4_body: "Screenshots of AI mentions found, target queries, recommendations",
+    del_label: "What you receive", del_title: "Concrete <em>deliverables</em>.",
+    del_intro: "Not a PowerPoint audit. Deployed files, optimized pages, measurable results.",
+    dtag_tech: "Technical", dtag_data: "Structured data", dtag_content: "Content", dtag_report: "Reporting",
+    del1_body: "Deployed on your domain — tells AI what you are, what you offer, how to contact you.",
+    del2_body: "Connector for AI agents — enables integration with advanced search assistants.",
+    del3_body: "Restaurant, Menu, LocalBusiness, OpeningHours — the vocabulary AI uses to understand you.",
+    del4_title: "Optimized Google Business", del4_body: "Profile re-optimized for AI snippets, not just the classic Google map pack.",
+    del5_title: "3–5 reformatted pages", del5_body: "Pages of your site rewritten to be cited as a source by ChatGPT, Perplexity and Gemini.",
+    del6_title: "Visibility report D+30", del6_body: "Screenshots of AI mentions found on your target queries, with analysis and recommendations.",
+    price_label: "Pricing", price_title: "Clear <em>investment</em>.",
+    price_intro: "A restaurant that captures 2 new covers per week via AI recovers $450–900/month. The offer pays for itself in 30 days.",
+    plan_oneshot: "one-time", plan2_monthly: "+ €290/mo", plan3_monthly: "/mo",
+    plan1_label: "Launch", plan1_desc: "Full audit + deployment — for the first 3 clients.",
+    plan2_label: "Growth", plan2_desc: "One-time + monthly GEO maintenance and reporting.", plan2_roi: "Estimated ROI: 3x to 5x in 3 months",
+    plan3_label: "Agency / Multi-venue", plan3_desc: "3 venues included — for agencies or groups.",
+    featured_badge: "Recommended",
+    p1f1:"Full GEO audit",p1f2:"llms.txt + ai-plugin.json deployed",p1f3:"Structured Schema.org",p1f4:"Optimized Google Business",p1f5:"D+30 report",
+    p2f1:"Everything in Launch",p2f2:"3–5 pages reformatted for AI",p2f3:"Monthly visibility monitoring",p2f4:"Content adjustments",p2f5:"Detailed monthly report",
+    p3f1:"3 venues covered",p3f2:"Full deployment on each site",p3f3:"Shared tracking dashboard",p3f4:"Unlimited responses",p3f5:"Priority access",
+    gar_label: "Guarantee", gar_title: "Measurable results<br/>or we redo it.",
+    gar_body: "If after 30 days your venue doesn't appear in any AI response for your target queries, I redo a complete pass for free. You take zero risk.",
+    faq_label: "FAQ", faq_title: "Frequently asked questions.",
+    faq: [
+      {q:"What exactly is GEO?", a:"Generative Engine Optimization is the optimization of your presence for AI search engines like ChatGPT, Perplexity or Google AI Overview. Where SEO optimizes for clickable links, GEO optimizes to be cited as a source in a conversational response."},
+      {q:"Does it replace classic SEO?", a:"No, it complements it. Most GEO optimizations also improve your classic SEO (structured data, content quality, domain authority). It's an additional layer, not a replacement."},
+      {q:"Do I need a developer to deploy the files?", a:"No. I handle the complete deployment — whether your site is on WordPress, Webflow, Squarespace or static HTML. You don't need to do anything on the technical side."},
+      {q:"How quickly will I see results?", a:"Technical files are deployed within 15 days. The first AI citations generally appear between D+15 and D+45 depending on the domain and local competition. The D+30 report measures the first occurrences."},
+      {q:"What type of venue does this work for?", a:"Restaurants, brasseries, bars, hotel-restaurants, caterers, dark kitchens — any venue with a local presence looking to attract customers through new AI searches. I've worked with clients in Paris, Lyon, and New York."},
+    ],
+    cta_urgence: "⚡ Limited spots — 3 clients per month",
+    cta_title: "Ready to be <em>recommended</em><br/>by AI?",
+    cta_body: "Free audit of your current situation — 20 minutes, no commitment. I'll tell you exactly where you stand and what's blocking your AI visibility.",
+    cta_btn: "Request my free audit →",
+    cta_note: "Reply within 24h · No aggressive follow-up",
+    footer_tagline: "Generative Engine Optimization for restaurants & local businesses",
+    // Modal
+    modal_title: "Get your free audit",
+    modal_sub: "20 minutes, no commitment. I'll tell you exactly what's blocking your AI visibility.",
+    form_nom_label: "Last name", form_nom_ph: "Smith",
+    form_prenom_label: "First name", form_prenom_ph: "John",
+    form_fonction_label: "Your role", form_fonction_ph: "Owner, Manager, Chef...",
+    form_resto_label: "Restaurant name", form_resto_ph: "The Market Corner",
+    form_ville_label: "City", form_ville_ph: "Paris, New York, London...",
+    form_url_label: "Website URL", form_url_ph: "https://myrestaurant.com",
+    form_submit: "Send my request →",
+    form_subject: "New GEO Local audit request",
+    success_title: "Request sent!",
+    success_body: "I'll get back to you within 24h to schedule your audit. See you soon!",
+  }
+};
+
+// ══════════════════════════════════════════════════════════
+// APPLY LANGUAGE
+// ══════════════════════════════════════════════════════════
+let currentLang = 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+
+  // html lang attribute
+  document.documentElement.lang = lang;
+
+  // Meta SEO
+  document.getElementById('meta-title').textContent = t._title;
+  document.getElementById('meta-desc').setAttribute('content', t._desc);
+  document.getElementById('og-title').setAttribute('content', t._title);
+  document.getElementById('og-desc').setAttribute('content', t._desc);
+  document.getElementById('og-locale').setAttribute('content', t._og_locale);
+  document.getElementById('canonical').setAttribute('href', `./geo-local-landing.html?lang=${lang}`);
+  document.title = t._title;
+
+  // Featured badge
+  document.getElementById('featured-card').setAttribute('data-badge', t.featured_badge);
+
+  // Text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Hidden input names (form subject)
+  document.querySelectorAll('[data-i18n-name]').forEach(el => {
+    const key = el.getAttribute('data-i18n-name');
+    if (t[key] !== undefined) el.value = t[key];
+  });
+
+  // HTML nodes (contain <em> etc.)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // FAQ rebuild
+  buildFaq(t.faq);
+
+  // Prices in correct currency
+  renderPrices(lang);
+
+  // Lang switcher state
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+  // URL update (no reload) — pour le SEO des crawlers JS-aware
+  const url = new URL(window.location.href);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url.toString());
+
+  // Fade animation
+  document.body.classList.remove('lang-fade');
+  void document.body.offsetWidth;
+  document.body.classList.add('lang-fade');
+
+  // Persist
+  try { localStorage.setItem('geo_lang', lang); } catch(e){}
+}
+
+function buildFaq(items) {
+  const container = document.getElementById('faq-container');
+  container.innerHTML = items.map(item => `
+    <div class="faq-item">
+      <button class="faq-q">${item.q} <span class="arrow">+</span></button>
+      <div class="faq-a"><p>${item.a}</p></div>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      container.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// LIVE EXCHANGE RATE + PRICE RENDERING
+// ══════════════════════════════════════════════════════════
+let eurUsdRate = 1.15; // fallback
+
+function eur2usd(eur) {
+  return Math.round(eur * eurUsdRate);
+}
+
+function fmtUsd(n) {
+  return '$' + n.toLocaleString('en-US');
+}
+
+function renderPrices(lang) {
+  const badge = document.getElementById('rate-badge');
+  const rateText = document.getElementById('rate-text');
+
+  if (lang === 'en') {
+    // Plan 1: $490 equivalent one-time
+    const p1 = document.getElementById('price-1');
+    p1.innerHTML = `${fmtUsd(eur2usd(490))} <span data-i18n="plan_oneshot">one-time</span>`;
+
+    // Plan 2: $890 + $290/mo
+    const p2 = document.getElementById('price-2');
+    p2.innerHTML = `${fmtUsd(eur2usd(890))} <span>+ ${fmtUsd(eur2usd(290))}/mo</span>`;
+
+    // Plan 3: $1500/mo
+    const p3 = document.getElementById('price-3');
+    p3.innerHTML = `${fmtUsd(eur2usd(1500))} <span>/mo</span>`;
+
+    // Show rate badge
+    rateText.textContent = `Live rate: 1 EUR = ${eurUsdRate.toFixed(4)} USD`;
+    badge.style.display = 'flex';
+  } else {
+    // Restore EUR
+    document.getElementById('price-1').innerHTML = `490 € <span data-i18n="plan_oneshot">one-shot</span>`;
+    document.getElementById('price-2').innerHTML = `890 € <span data-i18n="plan2_monthly">+ 290 €/mois</span>`;
+    document.getElementById('price-3').innerHTML = `1 500 € <span data-i18n="plan3_monthly">/mois</span>`;
+    badge.style.display = 'none';
+  }
+}
+
+async function fetchRate() {
+  try {
+    // API gratuite, sans clé, CORS OK
+    const res = await fetch('https://open.er-api.com/v6/latest/EUR');
+    const data = await res.json();
+    if (data && data.rates && data.rates.USD) {
+      eurUsdRate = data.rates.USD;
+      document.getElementById('rate-source').textContent = '· open.er-api.com · live';
+    }
+  } catch(e) {
+    // Fallback silencieux — on garde 1.15
+    document.getElementById('rate-source').textContent = '· fallback rate';
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+(async function init() {
+  // Detect lang: URL param → localStorage → browser → default fr
+  const urlParam = new URLSearchParams(window.location.search).get('lang');
+  let storedLang;
+  try { storedLang = localStorage.getItem('geo_lang'); } catch(e){}
+  const browserLang = navigator.language?.startsWith('en') ? 'en' : 'fr';
+  const detected = urlParam || storedLang || browserLang || 'fr';
+  const lang = ['fr','en'].includes(detected) ? detected : 'fr';
+
+  // Fetch rate before first render if EN, else lazy
+  if (lang === 'en') await fetchRate();
+  else fetchRate(); // async, non bloquant
+
+  setLang(lang);
+})();
+
+// ══════════════════════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════════════════════
+function openModal() {
+  document.getElementById('audit-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('audit-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Fermer en cliquant sur l'overlay
+document.getElementById('audit-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Fermer avec Échap
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ── Soumission Web3Forms ──
+document.getElementById('audit-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  const t = i18n[currentLang];
+  btn.textContent = t.form_submit.replace('→', '...').replace('→', '');
+
+  const formData = new FormData(this);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('modal-form-content').style.display = 'none';
+      const success = document.getElementById('form-success');
+      success.style.display = 'flex';
+    } else {
+      btn.disabled = false;
+      btn.textContent = i18n[currentLang].form_submit;
+      alert('Une erreur est survenue. Merci de réessayer.');
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = i18n[currentLang].form_submit;
+    alert('Une erreur est survenue. Merci de réessayer.');
+  }
+});
+
+// ── Reveal on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- Schema.org bilingue — moteurs IA lisent le JSON-LD indépendamment de la langue affichée -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"GEO Local",
+  "description":"Generative Engine Optimization for restaurants and local businesses — be cited by ChatGPT, Perplexity and Google AI.",
+  "provider":{"@type":"Person","name":"Ousmane Sakho"},
+  "areaServed":["FR","US"],
+  "availableLanguage":["French","English"],
+  "offers":[
+    {"@type":"Offer","name":"Launch","price":"490","priceCurrency":"EUR"},
+    {"@type":"Offer","name":"Growth","price":"890","priceCurrency":"EUR"},
+    {"@type":"Offer","name":"Agency","price":"1500","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","priceType":"Monthly"}}
+  ]
+}
+</script>
+</body>
+</html>
